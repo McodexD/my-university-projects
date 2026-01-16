@@ -1,0 +1,14 @@
+name: Daily Build Check
+on:
+  schedule:
+    - cron: '0 0 * * *'  # This runs every day at midnight
+  workflow_dispatch:      # This lets you run it manually too
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run a simple test
+        run: echo "Code is still safe and sound!"
