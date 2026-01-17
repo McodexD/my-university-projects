@@ -1,8 +1,8 @@
-name: Daily Build Check
+name: Daily Contribution
 on:
   schedule:
-    - cron: '0 0 * * *'  # This runs every day at midnight
-  workflow_dispatch:      # This lets you run it manually too
+    - cron: '0 0 * * *'  # Runs at midnight
+  workflow_dispatch:      # Lets you test it manually
 
 jobs:
   build:
@@ -10,5 +10,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Run a simple test
-        run: echo "Code is still safe and sound!"
+      
+      - name: Make a change
+        run: |
+          echo "Last Check: $(date)" > daily_log.txt
+          
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add daily_log.txt
+          git commit -m "Automated daily check-in" || echo "No changes"
+          git push
