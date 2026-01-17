@@ -1,19 +1,21 @@
 name: Daily Contribution
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs at midnight
-  workflow_dispatch:      # Lets you test it manually
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # This line is the secret sauce to fix the red X
+    permissions:
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Make a change
-        run: |
-          echo "Last Check: $(date)" > daily_log.txt
+      - name: Update Log
+        run: echo "Last Check-in $(date)" > daily_log.txt
           
       - name: Commit and Push
         run: |
