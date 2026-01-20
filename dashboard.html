@@ -32,5 +32,17 @@
         <a href="#" class="link-box">Email</a>
         <a href="index.html" class="link-box">Back to Site</a>
     </div>
+<div id="clock-container" style="margin-top: 20px; font-size: 1.5em; color: #2c3e50;">
+    <p id="clock"></p>
+</div>
+
+<script>
+    function updateTime() {
+        const now = new Date();
+        document.getElementById('clock').innerHTML = "Home Study Time: " + now.toLocaleTimeString();
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+</script>
 </body>
 </html>
