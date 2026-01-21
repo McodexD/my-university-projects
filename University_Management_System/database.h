@@ -15,5 +15,6 @@ typedef struct {
 void add_university_course();
 void display_portfolio();
 void save_data();
+void search_course();
 
 #endif

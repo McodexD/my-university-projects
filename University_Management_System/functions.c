@@ -26,3 +26,26 @@ void display_portfolio() {
                list[i].name, list[i].credits);
     }
 }
+void search_course() {
+    char search_name[100];
+    int found = 0;
+
+    printf("\nEnter the name of the course to search for: ");
+    scanf("%s", search_name);
+
+    for (int i = 0; i < total; i++) {
+        // strcmp returns 0 if the strings match exactly
+        if (strcmp(list[i].name, search_name) == 0) {
+            printf("\n--- Course Found! ---");
+            printf("\nName: %s", list[i].name);
+            printf("\nCredits: %d", list[i].credits);
+            printf("\nStatus: %s\n", list[i].is_completed ? "Passed" : "Active");
+            found = 1;
+            break; 
+        }
+    }
+
+    if (!found) {
+        printf("\nCourse '%s' not found in the system.\n", search_name);
+    }
+}
